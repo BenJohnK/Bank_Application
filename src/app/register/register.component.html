@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            
+            <div class="main">
+                <h4>Bank Application Register</h4><br>
+            
+            <form ngNativeValidate (ngSubmit)="register()">
+            <input id="username" type="text" [(ngModel)]="username" name="username" placeholder="Username" class="text" required><br><br>
+
+            <input id="accno" type="text" [(ngModel)]="accno" name="accno" placeholder="Account Number" class="text" required><br><br>
+            
+            <input id="pswd" type="password" [(ngModel)]="password" name="password" class="text" placeholder="Password" required><br> <br>
+            
+            <input type="submit" value="Register" class="button butefct"> <br>
+            </form>
+                <a class="textfp" routerLink="">Already have an account?</a>
+           <div class="line"></div>
+                
+        
+        </div></div>
+        <div class="col-4"></div>
+    </div>
+</div>

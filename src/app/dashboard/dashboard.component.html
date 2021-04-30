@@ -1,0 +1,12 @@
+<div class="card card-body" style="width: 40%;margin: auto;margin-top: 100px;text-align: center;">
+    <h2>Yes Bank</h2>
+    <form ngNativeValidate (ngSubmit)="transact()">
+    <input type="text" class="form-control" name="amount" [(ngModel)]="amount" (change)="amountChanged($event)" required placeholder="Enter Amount">
+    <p *ngIf = 'check' >Not a valid amount</p>
+    <br>
+    <button id="deposit" class="btn btn-primary" style="width: 48%;float: left;" (click)="deposit()">Deposit</button>
+    <button class="btn btn-success" style="margin-left:2%;width: 48%;float: left;" (click)="withdraw()">Withdraw</button>
+    </form>
+    
+</div>
+

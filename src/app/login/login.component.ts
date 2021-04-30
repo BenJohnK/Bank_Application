@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {DataService} from '../services/data.service'
 
 @Component({
   selector: 'app-login',
@@ -7,16 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   name:string
-  accountnumber:any
+  accountnumber="Enter Account Number"
   password:any
-  account_details:any = {
-    1000: { name: "ajay", accno: 1000, password: "testone", amount: 5000 },
-    1001: { name: "vijay", accno: 1001, password: "testtwo", amount: 3000 },
-    1002: { name: "ram", accno: 1002, password: "testthree", amount: 7000 },
-    1003: { name: "ravi", accno: 1003, password: "testfour", amount: 10000 },
-
-  }
-  constructor() { 
+  
+  constructor(private router:Router,private ds:DataService) { 
     this.name="enter account number"
   }
 
@@ -30,20 +26,22 @@ export class LoginComponent implements OnInit {
     console.log(event.target.value)
     this.password=event.target.value
   }
-  login(a:any,p:any){
-    let accnum=a.value
-    let pwd=p.value
-    if(accnum in this.account_details){
-      if(this.account_details[accnum]["password"]==pwd){
-        alert("login success")
-      }
-      else{
-        alert("wrong password")
-      }
+  login(){
+    let accnum=this.accountnumber
+    let pwd=this.password
+    let result=this.ds.login(accnum,pwd)
+    if(result==1){
+      alert("login success")
+      this.router.navigateByUrl("dashboard")
+    }
+    else if(result==-1){
+      alert("wrong password")
     }
     else{
       alert("Invalid Account number")
     }
   }
-
+toRegister(){
+  this.router.navigateByUrl("register")
+}
 }
